@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Attendance Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container login-box">
+    <h2>Attendance Login</h2>
+      <p>Are You an Admin? <a href="admin-login.html">Login here</a></p>
+     
+    <form id="login-form">
+      <div class="form-row">
+        <label for="teacher">Teacher:</label>
+        <select id="teacher" name="teacher">
+          <option value="">Select Teacher</option>
+          <option value="teacher1">Gule Mam</option>
+          <option value="teacher2">Tidke Mam</option>
+          <option value="teacher3">Yadgire Mam</option>
+          <option value="teacher4">Suryawanshi Sir</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label for="subject">Subject:</label>
+        <select id="subject" name="subject">
+          <option value="">Select Subject</option>
+          <option value="dbms">DBMS</option>
+          <option value="cao">CAO</option>
+          <option value="cd">CD</option>
+          <option value="dss">DSS</option>
+        </select>
+      </div>
+
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <div id="attendance-container" class="hidden">
+    <form id="attendance-form">
+      <table>
+        <thead>
+          <tr>
+            <th>Sr No</th>
+            <th>Name</th>
+            <th>Present</th>
+          </tr>
+        </thead>
+        <tbody id="attendance-table-body"></tbody>
+      </table>
+      <button type="submit">Submit Attendance</button>
+    </form>
+  </div>
+
+
+  <script src="script.js"></script>
+</body>

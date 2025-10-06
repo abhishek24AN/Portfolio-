@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f6f9;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #28a745;
+      color: white;
+      padding: 15px 30px;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    header h2 {
+      margin: 0;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 230px;
+      height: calc(100% - 60px);
+      background: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+
+    .sidebar-links {
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px 20px;
+      color: #333;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .sidebar a:hover {
+      background: #e9f5ee;
+      color: #28a745;
+    }
+
+    /* Logout Button */
+    .logout-btn {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 12px;
+      margin: 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .logout-btn:hover {
+      background: #c82333;
+    }
+
+    /* Main content */
+    .main-content {
+      margin-top: 80px;
+      margin-left: 250px;
+      padding: 20px;
+      overflow-y: auto;
+      height: calc(100vh - 80px);
+      width: calc(100% - 250px);
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #333;
+    }
+
+    .btn {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      background: #218838;
+    }
+    .btn {
+      padding: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background: #28a745;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Admin Dashboard</h1>
+  </header>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-links">
+     
+      <a href="#" onclick="showSection('dashboard')">Dashboard Overview</a>
+      <a href="#" onclick="showSection('manage-teachers')">Manage Teachers</a>
+      <a href="#" onclick="showSection('manage-students')">Manage Students</a>
+      <a href="#" onclick="showSection('view-attendance')">View Attendance</a>
+      <a href="#" onclick="showSection('admin-info')">College Admin Details</a>
+      <a href="#" class="logout" onclick="logout()">Logout</a>
+    </div>
+
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+
+    <!-- Dashboard Overview -->
+    <div id="dashboard" class="card">
+      <h3>Welcome to Mauli College Admin Dashboard👋</h3>
+      <p>Overview of attendance, teachers, students and staff.</p>
+      <ul>
+        <li>Total Teachers: 50</li>
+        <li>Total Students: 73</li>
+        <li>Total Classes:50</li>
+        <li>Total Staff: 30</li>
+        <li>Attendance Today: 90%</li>
+        <li>Average Attendance: 75%</li>
+      </ul>
+    </div>
+
+    <!-- Teachers Section -->
+    <div id="teachers" class="card" style="display:none;">
+      <h3>Manage Teachers</h3>
+      <button class="btn">+ Add New Teacher</button>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Subject</th>
+          <th>Action</th>
+        </tr>
+        <tr>
+          <td>101</td>
+          <td>Mr. Patil</td>
+          <td>SE</td>
+          <td><button class="btn">Edit</button></td>
+        </tr>
+      </table>
+    </div>
+<!-- College Admin Details Section -->
+<div id="admin-info" class="card" style="display:none;">
+  <h3 style="text-align:center; color:#28a745;">Mauli College of Engineering & Technology, Shegaon</h3>
+  <p style="text-align:center; margin-bottom:25px;">Khamgaon Road, Shegaon, Buldhana, Maharashtra, 444203</p>
+
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:20px;">
+    
+    <!-- College Info -->
+    <div style="background:#f8f9fa; padding:20px; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+      <h4>📍 Address</h4>
+      <p>Khamgaon Road, Shegaon,<br>Buldhana, Maharashtra, 444203</p>
+      <h4>🌐 Website</h4>
+      <a href="https://mcoet.mauligroup.org" target="_blank" style="color:#28a745; text-decoration:none;">
+        mcoet.mauligroup.org
+      </a>
+    </div>
+
+    <!-- Contact Info -->
+    <div style="background:#f8f9fa; padding:20px; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+      <h4>☎ Contact</h4>
+      <p><strong>Phone:</strong> +91 7722027506</p>
+      <p><strong>Email:</strong> <a href="mailto:maulicoet@gmail.com" style="color:#28a745;">maulicoet@gmail.com</a></p>
+    </div>
+
+    <!-- Principal Info -->
+    <div style="background:#f8f9fa; padding:20px; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+      <h4>👨‍🏫 Principal</h4>
+      <p><strong>Name:</strong> Dr. C. M. Jadhao</p>
+      <p><strong>Email:</strong> <a href="mailto:cmjadhao@gmail.com" style="color:#28a745;">cmjadhao@gmail.com</a></p>
+    </div>
+
+    <!-- Chairman Info -->
+    <div style="background:#f8f9fa; padding:20px; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+      <h4>🏫 Chairman</h4>
+      <p><strong>Name:</strong> Shri Dnyaneshwar P. Patil</p>
+    </div>
+  </div>
+</div>
+
+    <!-- Students Section -->
+    <div id="students" class="card" style="display:none;">
+      <h3>Manage Students</h3>
+      <button class="btn">+ Add New Student</button>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Class</th>
+          <th>Action</th>
+        </tr>
+        <tr>
+          <td>201</td>
+          <td>Sayali</td>
+          <td>TY B.Tech</td>
+          <td><button class="btn">Edit</button></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Attendance Section -->
+    <div id="attendance" class="card" style="display:none;">
+      <h3>Attendance Report</h3>
+      <p>Export to PDF or Excel when connected with backend.</p>
+      <button class="btn">Download Excel</button>
+      <button class="btn">Download PDF</button>
+    </div>
+
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.card').forEach(div => div.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+    }
+
+    function logout() {
+      if (confirm("Are you sure you want to logout?")) {
+        window.location.href = "admin-login.html";
+      }
+    }
+  </script>
+  
+
+</body>
+</html>
